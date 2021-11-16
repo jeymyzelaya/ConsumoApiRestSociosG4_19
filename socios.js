@@ -4,7 +4,7 @@ var UrlGetSocios = 'http://localhost:80/G4_19/controller/socios_negocio.php?op=G
 var UrlPostSocios = 'http://localhost:80/G4_19/controller/Socios_negocio.php?op=InsertSocio_negocio';
 var UrlDeleteSocios = 'http://localhost:80/G4_19/controller/Socios_negocio.php?op=DeleteSocio_negocio';
 var UrlGetUno = 'http://localhost:80/G4_19/controller/Socios_negocio.php?op=GetUno';
-var UrlPutsocios = 'http://localhost:80/G4_19/controller/Socios_negocio.php?op=UpdateSocio_negocio';
+var UrlPutSocios = 'http://localhost:80/G4_19/controller/Socios_negocio.php?op=UpdateSocio_negocio';
 
 
 $(document).ready(function () {
@@ -63,14 +63,14 @@ function AgregarSocio() {
         data: datossociojson,
         datatype: 'JSON',
         contentType: 'appplication/json',
-        succes: function (response) {
+        success: function (response) {
             console.log(response);
         }
 
     }); alert("Socio Agregado");
 }
 
-function CargarSocio(idsocio){
+function CargarSocio(idsocio) {
     var datossocio = {
         id: idsocio
     };
@@ -93,12 +93,12 @@ function CargarSocio(idsocio){
             $('#fecha_creado').val(MiItems[0].FECHA_CREADO);
             $('#estado').val(MiItems[0].ESTADO);
             $('#telefono').val(MiItems[0].TELEFONO);
-            var btnactualizar = '<input type="submit" id="btn_actualizar" onclick="ActualizarSocio(' + MiItems[0].id+ ')"' +
+            var btnactualizar = '<input type="submit" id="btn_actualizar" onclick="ActualizarSocio(' + MiItems[0].ID + ')"' +
                 'value="Actualizar Socio" class="btn btn-primary"></input>';
             $('.button').html(btnactualizar);
         }
     });
-        
+
 
 }
 
@@ -115,20 +115,22 @@ function ActualizarSocio(idsocio) {
         ESTADO: $('#estado').val(),
         TELEFONO: $('#telefono').val()
     };
+
     var datossociojson = JSON.stringify(datossocio);
- //alert(datossociojson);
+    //alert(datossociojson);
     $.ajax({
-        url: UrlPutsocios,
+        url: UrlPutSocios,
         type: 'PUT',
         data: datossociojson,
         datatype: 'JSON',
-        contentType: 'application/json',
+        contentType: 'appplication/json',
         success: function (response) {
             console.log(response);
         }
-    });
-    alert("Socio Actualizado");
+
+    }); alert("Socio Actualizado");
 }
+
 
 
 function EliminarSocio(idsocio) {
